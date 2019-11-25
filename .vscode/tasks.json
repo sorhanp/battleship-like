@@ -1,0 +1,81 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build battleship-like Tests",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "command": "cmake",
+            "args": [
+                "-G",
+                "'Ninja'",
+                "-D",
+                "'CMAKE_C_COMPILER=gcc'",
+                "-D",
+                "'CMAKE_EXPORT_COMPILE_COMMANDS=ON'",
+                "./.."
+            ]
+        },
+        {
+            "label": "Ninja battleship-like Tests",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/Bin"
+            },
+            "command": "ninja"
+        },
+        /* No need for CTest as Boost gives out better information for TDD{
+            "label": "Ctest battleship-like Tests",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/Build"
+            },
+            "command": "ctest",
+            "args": [
+                "--verbose"
+            ]
+        },*/
+        {
+            "label": "Ctest battleship-like Tests",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/Build"
+            },
+            "command": "./a.out",
+            "args": [
+                "--log_level=test_suite",
+            //    "--run_test=specify_test_here_if_necessary"
+            ]
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Build battleship-like Tests",
+                "Ninja battleship-like Tests",
+                "Ctest battleship-like Tests"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "build active file",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.out"
+            ],
+            "options": {
+                "cwd": ""
+            }
+        }
+    ]
+}
