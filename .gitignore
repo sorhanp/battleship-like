@@ -1,10 +1,13 @@
-#dolphin and kate-swp
+# dolphin and kate-swp
 .directory
 *.kate-swp
 
-#build and bin folders of the project
+# build and bin folders of the project
 bin/*
 build/*
+
+# Drawio binary files 
+.drawio
 
 # Prerequisites
 *.d
