@@ -4,6 +4,7 @@ project(battleships-like    VERSION 0.1.0
                             DESCRIPTION "Battleships like game made in C and SDL"
                             LANGUAGES C)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # See if SDL2 is installed
@@ -11,7 +12,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     if(SDL2_FOUND)
         message(STATUS "SDL2_INCLUDE_DIRS: ${SDL2_INCLUDE_DIRS}")
         include_directories(${SDL2_INCLUDE_DIRS})
-        # Compile options for SDL
+        # Compile options for SDL2
         add_compile_options(-lSDL2main -lSDL2)
     endif()
 
