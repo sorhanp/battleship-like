@@ -4,7 +4,6 @@ project(battleships-like    VERSION 0.1.0
                             DESCRIPTION "Battleships like game made in C and SDL"
                             LANGUAGES C)
 
-set(BUILD_TESTING false)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # See if SDL2 is installed
@@ -29,7 +28,5 @@ endif()
 
 # Include sources
 add_subdirectory(src)
- 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
-    add_subdirectory(tests)
-endif()
+# Include tests
+add_subdirectory(tests)
